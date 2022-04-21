@@ -72,7 +72,7 @@ json5==0.9.6
 jupyter-client==7.1.1
 jupyter-core==4.9.1
 jupyter-packaging==0.7.12
-jupyter-server==1.13.3
+
 jupyterlab==3.0.9
 jupyterlab-pygments==0.1.2
 jupyterlab-server==2.10.3

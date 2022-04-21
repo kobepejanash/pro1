@@ -175,7 +175,7 @@ torchvision==0.6.1
 tornado==6.1
 tqdm==4.62.3
 traitlets==5.1.1
-typing_extensions==4.1.1
+typing_extensions
 urllib3==1.26.8
 wcwidth==0.2.5
 webencodings==0.5.1

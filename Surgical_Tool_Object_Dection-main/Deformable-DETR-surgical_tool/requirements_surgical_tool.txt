@@ -169,9 +169,9 @@ threadpoolctl==3.0.0
 tifffile==2021.11.2
 toml==0.10.2
 tomli==1.2.3
-torch==1.7.0+cu101
+torch==1.5.1
 torchaudio==0.7.0
-torchvision==0.8.1+cu101
+torchvision==0.6.1
 tornado==6.1
 tqdm==4.62.3
 traitlets==5.1.1

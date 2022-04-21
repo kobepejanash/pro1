@@ -166,7 +166,7 @@ termcolor==1.1.0
 terminado==0.12.1
 testpath==0.5.0
 threadpoolctl==3.0.0
-tifffile==2022.4.8
+tifffile==2021.11.2
 toml==0.10.2
 tomli==1.2.3
 torch==1.7.0+cu101

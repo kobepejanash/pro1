@@ -98,7 +98,7 @@ nest-asyncio==1.5.4
 networkx==2.6.3
 notebook==6.4.7
 numba==0.53.1
-numpy==1.22.2
+numpy==1.21.6
 oauth2client==3.0.0
 oauthlib==3.1.1
 omegaconf==2.0.6

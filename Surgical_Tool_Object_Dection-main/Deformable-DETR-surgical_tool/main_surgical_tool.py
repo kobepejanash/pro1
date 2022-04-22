@@ -256,15 +256,17 @@ def main(args):
 
     if args.dataset_file == "surgical_tool":
         T_train = T.Compose([
-                                T.ToTensor(),
-                                T.Resize([800, 1066]),   # TBD, we can add more random shape. Check dataset folder and see what has been done over coco
+                                
+                                T.Resize([800, 1066]), 
+                                T.ToTensor(),# TBD, we can add more random shape. Check dataset folder and see what has been done over coco
                                 #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]), # we cannot include this line at here. The current input image is only
                                                                                             # gray scale image, i.e. one channel. We can only apply this normalization
                                                                                             # later when we cast from 1-channel to 3-channel sample.
                              ])
         T_test  = T.Compose([
-                                T.ToTensor(),
+                                
                                 T.Resize([800, 1066]),
+                                T.ToTensor(),
                                 #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]), # we cannot include this line at here. The current input image is only
                                                                                             # gray scale image, i.e. one channel. We can only apply this normalization
                                                                                             # later when we cast from 1-channel to 3-channel sample.
@@ -282,7 +284,7 @@ def main(args):
 
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
 
-        print(train_loader)
+        print(iter(train_loader))
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=collate_fn)  # validation process only support batch size of 1
         
         

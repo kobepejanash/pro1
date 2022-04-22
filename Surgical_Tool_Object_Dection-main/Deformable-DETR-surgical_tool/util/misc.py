@@ -421,13 +421,14 @@ def save_on_master(*args, **kwargs):
 
 
 def init_distributed_mode(args):
+    print(str(torch.cuda.device_count()))
     if 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
         args.rank = int(os.environ["RANK"])
         args.world_size = int(os.environ['WORLD_SIZE'])
         args.gpu = int(os.environ['LOCAL_RANK'])
         args.dist_url = 'env://'
         os.environ['LOCAL_SIZE'] = str(torch.cuda.device_count())
-        print(str(torch.cuda.device_count()))
+        
     elif 'SLURM_PROCID' in os.environ:
         proc_id = int(os.environ['SLURM_PROCID'])
         ntasks = int(os.environ['SLURM_NTASKS'])

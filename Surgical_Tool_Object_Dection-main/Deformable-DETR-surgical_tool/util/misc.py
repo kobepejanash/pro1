@@ -451,7 +451,7 @@ def init_distributed_mode(args):
 
     args.distributed = True
     
-    os.environ['CUDA_VISIBLE_DEVICES']='0'
+    os.environ['CUDA_VISIBLE_DEVICES']='1'
 
 
     torch.cuda.set_device(args.gpu)

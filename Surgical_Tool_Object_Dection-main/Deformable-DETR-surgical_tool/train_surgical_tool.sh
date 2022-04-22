@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PYTHONPATH=$PYTHONPATH:.
-gpu_ids="0"
+gpu_ids="1"
 NUM_OF_GPU=1
 name="Deformal_DETR_Surgical_tool_pretrain_R50_num_classes_4_detr+1_setting"
 output_dir="./outputs_pretrain_deformal_detr_R50_num_classes_4_detr+1_setting"

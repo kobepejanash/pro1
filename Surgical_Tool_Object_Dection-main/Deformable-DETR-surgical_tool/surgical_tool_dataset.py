@@ -52,10 +52,12 @@ class SurgicalToolDataset(Dataset):
         
         img = io.imread(image_dir)
         orig_size = img.shape
+        print(orig_size)
+        size = img.shape[1:]
         img=Image.open(image_dir)
         
         img = self.transform(img)
-        size = img.shape[1:]
+        
         
         target = {"boxes": [],
                   "labels": [],

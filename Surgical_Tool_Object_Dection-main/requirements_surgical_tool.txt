@@ -160,7 +160,7 @@ tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
 tensorflow-datasets==3.2.0
 tensorflow-estimator==2.4.0
-
+tensorflow-gpu==2.4.1
 tensorflow-metadata==1.6.0
 termcolor==1.1.0
 terminado==0.12.1
@@ -169,9 +169,9 @@ threadpoolctl==3.0.0
 tifffile==2022.4.8
 toml==0.10.2
 tomli==1.2.3
-
+torch==1.7.0+cu101
 torchaudio==0.7.0
-
+torchvision==0.8.1+cu101
 tornado==6.1
 tqdm==4.62.3
 traitlets==5.1.1

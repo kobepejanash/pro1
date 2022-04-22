@@ -2,6 +2,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from skimage import io
 import os
+from PIL import Image
 
 ## Image Dataloader
 ## Image Dataloader
@@ -49,7 +50,8 @@ class SurgicalToolDataset(Dataset):
         image_dir = os.path.join(self.dataset_dir, "Surgical-Dataset/Images/All/images/" + data_name + ".jpg")
         target_dir = os.path.join(self.dataset_dir, "Surgical-Dataset/Labels/label object names/" + data_name + ".txt")
         
-        img = io.imread(image_dir)
+        #img = io.imread(image_dir)
+        img=Image.open(image_dir)
         orig_size = img.shape
         img = self.transform(img)
         size = img.shape[1:]
@@ -75,9 +77,8 @@ class SurgicalToolDataset(Dataset):
             target['boxes'].append(box)
             target['labels'].append(label)
         
-        #target['boxes'] = torch.tensor(target['boxes'])
-        #target['labels'] = torch.tensor(target['labels'])
-        target['boxes'] = target['boxes']
-        target['labels'] = target['labels']
+        target['boxes'] = torch.tensor(target['boxes'])
+        target['labels'] = torch.tensor(target['labels'])
+  
         
         return img, target

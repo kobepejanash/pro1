@@ -149,6 +149,7 @@ def get_args_parser():
                         choices=[
                                  None,
                                  "./pretrain_ckpt/r50_deformable_detr-checkpoint.pth",   # for deformable DETR_R50
+                                 "./pretrain_ckpt/r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth"
                         ],
                         help='The path direction to the coco pretrain ckpt.')
 
@@ -298,6 +299,9 @@ def main(args):
 
     print("Start training")
     start_time = time.time()
+    
+    curr_best_mean_mAP = 0
+    
     for epoch in range(args.start_epoch, args.epochs):
         #if args.distributed:
         #    sampler_train.set_epoch(epoch)
@@ -319,18 +323,36 @@ def main(args):
                     'args': args,
                 }, checkpoint_path)
         
-        evaluate(
-            model, 
-            criterion, 
-            postprocessors, 
-            test_loader,
-            device,
-            args.output_dir,
-            args,
-            logger,
-            writer,
-            epoch)
-        
+        evaluate_result = evaluate(
+                            model, 
+                            criterion, 
+                            postprocessors, 
+                            test_loader,
+                            device,
+                            args.output_dir,
+                            args,
+                            logger,
+                            writer,
+                            epoch)
+
+        # let's save the checkpoint with the best mean mAP so far:
+        mean_mAP = 0
+        for key in evaluate_result['ap']:
+            mean_mAP += evaluate_result['ap'][key]
+        mean_mAP /= len(evaluate_result['ap'])
+
+        if mean_mAP >= curr_best_mean_mAP:
+            curr_best_mean_mAP = mean_mAP
+            if args.output_dir:
+                best_checkpoint_path = output_dir / 'best_checkpoint.pth'
+                utils.save_on_master({
+                    'model': model_without_ddp.state_dict(),
+                    'optimizer': optimizer.state_dict(),
+                    'lr_scheduler': lr_scheduler.state_dict(),
+                    'epoch': epoch,
+                    'args': args,
+                    }, best_checkpoint_path)
+
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print('Training time {}'.format(total_time_str))

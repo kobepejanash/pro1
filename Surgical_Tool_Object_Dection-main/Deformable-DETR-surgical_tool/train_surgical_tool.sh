@@ -14,7 +14,7 @@ do python -m torch.distributed.launch   \
         --master_port 66662             \
         main_surgical_tool.py                         \
         --lr 2e-4                       \
-        --batch_size 1                  \
+        --batch_size 3                  \
         --gpu_ids ${gpu_ids}            \
         --name ${name}       \
         --add_1_from_detr               \

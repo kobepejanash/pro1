@@ -256,6 +256,8 @@ def evaluate(model, criterion, postprocessors, data_loader,
                                 global_step=epoch)
         writer.add_scalar("test/true_positive_rate:", scalar_value=evaluate_result['tpr'], 
                                 global_step=epoch)
+        
+        return evaluate_result
 
         
 

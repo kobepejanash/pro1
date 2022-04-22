@@ -63,8 +63,8 @@ class SurgicalToolDataset(Dataset):
                   }
         #img = torch.tensor(img).unsqueeze(0)
 
-        target = {"boxes": [],
-        "labels": []}
+        # target = {"boxes": [],
+        # "labels": []}
 
         # construct the target from target file:
         with open(target_dir) as file:

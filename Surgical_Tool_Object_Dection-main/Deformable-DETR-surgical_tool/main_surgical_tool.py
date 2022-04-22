@@ -162,7 +162,7 @@ def get_args_parser():
 
 def main(args):
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_ids    # comment this line if running with cuda10.1
-    print('##############of cuda',args.gpu_ids)
+    #print('##############of cuda',args.gpu_ids)
     #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     
     logger = logging.getLogger(__name__)

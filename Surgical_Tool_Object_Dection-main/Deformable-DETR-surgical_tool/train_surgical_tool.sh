@@ -8,10 +8,7 @@ output_dir="./outputs_pretrain_deformal_detr_R50_num_classes_4_detr+1_setting"
 log="log_train_R50_pretrain_num_classes_4_detr+1_setting.txt"
 
 for split in 0 
-do python -m torch.distributed.launch   \
-        --nproc_per_node=${NUM_OF_GPU}  \
-        --use_env                       \
-        --master_port 66662             \
+do python             \
         main_surgical_tool.py                         \
         --lr 2e-4                       \
         --batch_size 3                  \

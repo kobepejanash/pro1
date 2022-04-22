@@ -75,7 +75,9 @@ class SurgicalToolDataset(Dataset):
             target['boxes'].append(box)
             target['labels'].append(label)
         
-        target['boxes'] = torch.tensor(target['boxes'])
-        target['labels'] = torch.tensor(target['labels'])
+        #target['boxes'] = torch.tensor(target['boxes'])
+        #target['labels'] = torch.tensor(target['labels'])
+        target['boxes'] = target['boxes']
+        target['labels'] = target['labels']
         
         return img, target

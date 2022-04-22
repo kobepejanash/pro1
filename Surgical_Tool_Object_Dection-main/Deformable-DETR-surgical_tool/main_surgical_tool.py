@@ -282,7 +282,7 @@ def main(args):
 
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
 
-        print(train_loader.shape)
+        print(train_loader)
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=collate_fn)  # validation process only support batch size of 1
         
         

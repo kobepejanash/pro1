@@ -52,16 +52,16 @@ class SurgicalToolDataset(Dataset):
         
         img = io.imread(image_dir)
    
-        # orig_size = img.shape
-        # img = self.transform(img)
-        # size = img.shape[1:]
+        orig_size = img.shape
+        img = self.transform(img)
+        size = img.shape[1:]
         
-        # target = {"boxes": [],
-        #           "labels": [],
-        #           "orig_size": torch.tensor(orig_size), # H x W
-        #           "size": torch.tensor(size), # H x W
-        #          }
-        img = torch.tensor(img).unsqueeze(0)
+        target = {"boxes": [],
+                  "labels": [],
+                  "orig_size": torch.tensor(orig_size), # H x W
+                  "size": torch.tensor(size), # H x W
+                  }
+        #img = torch.tensor(img).unsqueeze(0)
 
         target = {"boxes": [],
         "labels": []}

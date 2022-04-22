@@ -53,8 +53,7 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch,
         if args.dataset_file == "surgical_tool":
             # original input is grayscale. We need to expand to dim of 3:
             samples = samples.repeat([1, 3, 1, 1])
-            #
-            #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
+            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
             # TODO: we can consider of using a conv layer to expand the dim and train the conv layer. 
             # However, if we use a convolutional layer, then the normalization from ImageNet cannot be
             # put into effect.
@@ -63,7 +62,7 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch,
         # the "boxes" label are 0 - 1 scale and is cxcywh
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
-        outputs = model(samples.float())
+        outputs = model(samples)
 
         if args.debug:
             print("output len: ", outputs["pred_logits"].shape)
@@ -150,14 +149,14 @@ def evaluate(model, criterion, postprocessors, data_loader,
         if args.dataset_file == "surgical_tool":
             # original input is grayscale. We need to expand to dim of 3:
             samples = samples.repeat([1, 3, 1, 1])
-            #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
+            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
             # TODO: we can consider of using a conv layer to expand the dim and train the conv layer. 
             # However, if we use a convolutional layer, then the normalization from ImageNet cannot be
             # put into effect.
 
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
-        outputs = model(samples.float())
+        outputs = model(samples)
 
         loss_dict = criterion(outputs, targets)
         weight_dict = criterion.weight_dict

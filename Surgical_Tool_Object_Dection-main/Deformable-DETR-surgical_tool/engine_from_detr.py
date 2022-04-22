@@ -62,7 +62,7 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch,
         # the "boxes" label are 0 - 1 scale and is cxcywh
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
-        outputs = model(samples)
+        outputs = model(samples.float())
 
         if args.debug:
             print("output len: ", outputs["pred_logits"].shape)

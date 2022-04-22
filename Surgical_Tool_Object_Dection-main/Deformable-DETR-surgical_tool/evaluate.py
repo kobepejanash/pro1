@@ -195,7 +195,7 @@ def get_args_parser():
 
 def main(args):
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_ids
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
     logger = logging.getLogger(__name__)
     writer = SummaryWriter(log_dir=os.path.join("logs", args.name))

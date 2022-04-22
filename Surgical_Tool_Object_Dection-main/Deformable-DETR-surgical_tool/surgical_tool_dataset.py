@@ -50,9 +50,10 @@ class SurgicalToolDataset(Dataset):
         image_dir = os.path.join(self.dataset_dir, "Surgical-Dataset/Images/All/images/" + data_name + ".jpg")
         target_dir = os.path.join(self.dataset_dir, "Surgical-Dataset/Labels/label object names/" + data_name + ".txt")
         
-        #img = io.imread(image_dir)
-        img=Image.open(image_dir)
+        img = io.imread(image_dir)
         orig_size = img.shape
+        img=Image.open(image_dir)
+        
         img = self.transform(img)
         size = img.shape[1:]
         

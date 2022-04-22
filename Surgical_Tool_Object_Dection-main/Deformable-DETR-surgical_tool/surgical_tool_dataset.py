@@ -51,16 +51,20 @@ class SurgicalToolDataset(Dataset):
         target_dir = os.path.join(self.dataset_dir, "Surgical-Dataset/Labels/label object names/" + data_name + ".txt")
         
         img = io.imread(image_dir)
-        print(img)
-        orig_size = img.shape
-        img = self.transform(img)
-        size = img.shape[1:]
+   
+        # orig_size = img.shape
+        # img = self.transform(img)
+        # size = img.shape[1:]
         
+        # target = {"boxes": [],
+        #           "labels": [],
+        #           "orig_size": torch.tensor(orig_size), # H x W
+        #           "size": torch.tensor(size), # H x W
+        #          }
+        img = torch.tensor(img).unsqueeze(0)
+
         target = {"boxes": [],
-                  "labels": [],
-                  "orig_size": torch.tensor(orig_size), # H x W
-                  "size": torch.tensor(size), # H x W
-                 }
+        "labels": []}
 
         # construct the target from target file:
         with open(target_dir) as file:

@@ -53,7 +53,7 @@ def train_one_epoch(model, criterion, data_loader, optimizer, device, epoch,
         if args.dataset_file == "surgical_tool":
             # original input is grayscale. We need to expand to dim of 3:
             samples = samples.repeat([1, 3, 1, 1])
-            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
+            #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
             # TODO: we can consider of using a conv layer to expand the dim and train the conv layer. 
             # However, if we use a convolutional layer, then the normalization from ImageNet cannot be
             # put into effect.
@@ -149,7 +149,7 @@ def evaluate(model, criterion, postprocessors, data_loader,
         if args.dataset_file == "surgical_tool":
             # original input is grayscale. We need to expand to dim of 3:
             samples = samples.repeat([1, 3, 1, 1])
-            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
+            #T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(samples)
             # TODO: we can consider of using a conv layer to expand the dim and train the conv layer. 
             # However, if we use a convolutional layer, then the normalization from ImageNet cannot be
             # put into effect.

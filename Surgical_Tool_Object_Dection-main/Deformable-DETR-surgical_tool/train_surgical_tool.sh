@@ -18,7 +18,7 @@ do python             \
         --coco_pretrain                   \
         --coco_pretrain_ckpt ./pretrain_ckpt/r50_deformable_detr-checkpoint.pth        \
         --output_dir ${output_dir}          \
-        --debug  \
+        #--debug  \
         > ${log}
     
         #CUDA_VISIBLE_DEVICES=${gpu_ids}      \
